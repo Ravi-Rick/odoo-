@@ -1,0 +1,29 @@
+<odoo>
+    <template id="products" name="products">
+      <t t-call="website.layout">
+          <div class="container">
+              Hey This is template page
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <td>
+                              Name
+                          </td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <t t-foreach="user" t-as="user">  
+                          <tr>
+                              <td>
+                                  <t t-esc="user.name"/>
+                              </td>
+                          </tr>
+                      </t>   
+                  </tbody>
+
+              </table>   
+             
+          </div>  
+      </t>   
+    </template>
+</odoo>

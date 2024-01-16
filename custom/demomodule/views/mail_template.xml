@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+
+    <!-- <record id="mail_template_contact_person_mail" model="mail.template">
+        <field name="name">Contactss Data: Send By Email</field>
+        <field name="model_id" ref="demomodule.model_res_partner"/>
+        <field name="subject">Send The mail Data</field>
+        <field name="email_to">${ object.email }</field>
+        <field name="email_from">${ object.is_published }:Information</field>
+        <field name="email_from">"hello@beljumlah.com"</field>
+
+        <field name="lang">{{ object.partner_id.lang }}</field>         
+        <field name="body_html" type="html">
+
+            <p style="color:red">
+               Hello ${ object.is_published } Congratulations
+            </p>
+
+        </field>
+        
+    </record> -->
+
+           <!-- <data noupdate="1"> -->
+
+        <!-- Email template for reminder of unregistered users -->
+        <!-- <record id="mail__activate" model="mail.template">
+            <field name="name">Customer: Email varification</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">User Activation</field>
+            <field name="email_from">"hello@beljumlah.com"</field> -->
+            <!-- <field name="email_to">{{ object.email }}</field> -->
+            <!-- <field name="description">Sent automatically to admin if new user haven't responded to the invitation</field>
+            <field name="body_html" type="html">
+                <h1>Email varification</h1>
+                <p> <t t-out="ctx.get('otp')"/></p>     
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+    </data> -->
+
+
+
+
+
+
+    <record id="mail_template_contact_person_mail" model="mail.template">
+        <field name="name">Contactss Data: Send By Email</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="subject">Send The mail Data</field>
+        <field name="email_from">ravirick234@gmail.com</field>  
+        <!-- <field name="email_from">ravirick234@gmail.com</field>   -->
+        <field name="email_to">{{ object.email }}</field>
+        <field name="description">Sent automatically mail when i click the button</field>        
+        <field name="body_html" type="html">
+
+           <h1>Data</h1>
+                  
+            
+            
+
+        </field>
+        
+        
+    </record>
+
+
+
+
+
+    
+</odoo>
+
+        

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_demomodule_demomodule,demomodule.demomodule,model_demomodule_demomodule,base.group_user,1,1,1,1
+access_appointment.pharmacy.line,appointment.pharmacy.line,model_appointment_pharmacy_line,base.group_user,1,1,1,1
+
+
+
+
+
+

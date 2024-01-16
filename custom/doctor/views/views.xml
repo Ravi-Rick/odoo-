@@ -1,0 +1,145 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="doctor.list">
+      <field name="name">doctor list</field>
+      <field name="model">doctor</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            
+            <group>
+                <table>
+                    <tr>
+                        <td>Name:</td>
+                        <td><field name="name"/></td>
+                    </tr>
+                    <tr>
+                        <td>Image:</td>
+                        <td><field name="image" widget="image" class="oe_avatar"/></td>
+                    </tr>
+                    <tr>
+                        <td>Ref:</td>
+                        <td><field name="ref"/></td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td><field name="gender"/></td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><field name="description"/></td>
+                    </tr>
+                </table>
+            </group>
+
+            
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <record id="demomodule_view_tree" model="ir.ui.view">
+      <field name="name">demomodule.view.tree</field>
+      <field name="model">doctor</field>
+      <field name="arch" type="xml">
+        <tree string="demomodule tree">
+            <field name = "name"/>
+            <field name = "image"/>
+            <field name = "ref"/>
+            <field name = "gender"/>
+                  
+
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="doctor.action_window">
+      <field name="name">doctor window</field>
+      <field name="res_model">doctor</field>
+      <field name="view_mode">kanban,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <!-- <record model="ir.actions.server" id="doctor.action_server">
+      <field name="name">doctor server</field>
+      <field name="model_id" ref="model_doctor_doctor"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record> -->
+
+
+  <record id="doctor_view_kanban" model="ir.ui.view">
+      <field name="name">doctor.view.kanban</field>
+      <field name="model">doctor</field>
+      <field name="arch" type="xml">
+        <kanban string = "doctor kanban" class = "o_res_partner_kanban"> 
+                <field name="id"/>
+                <field name="gender"/>  
+                <field name = "image"/> 
+                <field name="name"/>
+                <field name="ref"/>
+                <field name = "image" string="image" domaim="[('image','=','image')]"/>
+
+
+          <templates>
+            <t t-name="kanban-box">
+                <div class="oe_kanban_global_click">
+                  <div class="o_kanban_image">
+                      <img class="o_kanban_image_inner_pic" alt="user guide"
+                         t-att-src="kanban_image('doctor.doctor','image',record.id.raw_value)"/>
+                      
+                  </div>
+
+                    <div>
+                        Name:<field name="name"/>
+                        <br/>
+                        Gender:<field name="gender"/>
+                        <br/>
+                        Ref:<field name="ref"/>
+                    </div>
+                </div>
+              
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="doctor" id="doctor.menu_root"
+
+
+        web_icon="doctor,static/description/icon.png"
+    
+    
+    />
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="doctor.menu_1" parent="doctor.menu_root"/>
+    <!-- <menuitem name="Menu 2" id="doctor.menu_2" parent="doctor.menu_root"/> -->
+
+    <!-- actions -->
+
+    <menuitem name="List" id="doctor.menu_1_list" parent="doctor.menu_1"
+              action="doctor.action_window"/>
+    <!-- <menuitem name="Server to list" id="doctor" parent="doctor.menu_2"
+              action="doctor.action_server"/> -->
+
+  </data>
+</odoo>

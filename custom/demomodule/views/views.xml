@@ -1,0 +1,399 @@
+<odoo>
+  
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="demomodule.list">
+      <field name="name">demomodule list</field>
+      <field name="model">demomodule.demomodule</field>
+      <field name="arch" type="xml">
+        <form delete = "0">
+        <sheet>
+             <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"/> 
+            
+            <group>
+                <table>
+                    <tr>
+                        <td>Value2:</td>
+                        <td><field name="value2"/></td>
+                    </tr>
+                    <tr>
+                        <td>Image:</td>
+                        <td><field name="image" widget="image" class="oe_avatar"/></td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td><field name="name"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>Doctor:</td>
+                        <td><field name="doctor_id"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>Tags:</td>
+                        <td><field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>Value:</td>
+                        <td><field name="value"/></td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><field name="description"/></td>
+                    </tr>
+
+                      <tr>  
+                          <td>Archived</td>
+                          <td><field name="active" invisible="1"/></td>
+                      </tr> 
+
+                      <tr>
+                          
+                          <separator/>
+                                  <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/> 
+                                    
+                      </tr>
+
+                  </table>
+            </group>
+
+            
+
+              <notebook>
+                    <page string="Prescription" name="prescription"> 
+                          <field name="description"/>
+                          <field name="name"/>
+                    </page>
+                    <page string="Pharmacy" name="pharmacy"> 
+                        <field name= "pharmacy_line_ids">
+                    
+                              <tree>
+                                  <field name="product_id" widget="many2one"/>
+                                  <field name="price_unit"/>
+                                  <field name="qty"/>
+                                  <field name="image" widget="image" class="oe_avatar"/>
+                                 
+
+                              </tree>
+
+              
+                            
+
+
+                          <form>
+                              <group>
+                                  <field name="product_id"/>
+                                  <field name="price_unit"/>
+                                  <field name="qty"/>
+                                  <field name="image" widget="image" class="oe_avatar"/>
+                              </group>
+                          </form>
+                          
+                        </field>       
+                     </page>
+              </notebook>
+
+        </sheet>
+              <div class="oe_chatter">
+                  <field name="message_follower_ids"/>
+                  <field name="message_ids" options="{'post_refresh':'recipients'}"/>
+              </div>
+
+             
+        </form> 
+
+
+
+      </field>
+    </record>
+
+    <!-- <record id="sale_order_view_list" model="ir.ui.view">
+        <field name="name">sale.order.view.inherit.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref= "product.product_template_only_form_view/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Customer Note">
+                    <field name="custom_note"/>
+                    
+                </page>
+                
+            </xpath>
+        </field> -->
+
+
+
+    <!-- </record> -->
+<record id="view_product_template_form_inherit" model="ir.ui.view">
+    <field name="name">product.template.form.inherit</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+            <page string="Custom Note" name="product_custom_note_page">
+            <group>
+                    <field name="name" string="Custom Note"/>
+                    <!-- Add more fields or elements as needed -->
+                </group>
+            </page>
+        </xpath>
+            
+              
+           
+        
+    </field>
+</record>
+
+
+    <record id="demomodule_view_tree" model="ir.ui.view">
+      <field name="name">demomodule.view.tree</field>
+      <field name="model">demomodule.demomodule</field>
+      <field name="arch" type="xml">
+        <tree string="demomodule tree">
+            <field name = "name"/>               
+            <field name = "value"/>       
+            <field name = "value2"/>
+            <field name = "doctor_id"/>
+            <field name = "tag_ids"/>
+            <field name = "active"/>
+
+
+      
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- 
+
+        <record id="demodule_view_kanban" model="ir.ui.view">
+          <field name="name">demodule.view.kanban</field>
+          <field name="model">demomodule.demomodule</field>
+          <field name="arch" type="xml">
+            <kanban strimodel_namedule kanban" class = "o_res_partner_kanban"> 
+                    <field name="model_name   
+                     <field name="value2"/>         
+                    <field name="doctor_id"/>
+                    <field name = "image"/> 
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name = "image" string="image" domaim="[('image','=','image')]"/>
+
+
+              <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                      <div class="o_kanban_image">
+                          <img class="o_kanban_imamodel_nameic" alt="user guide"
+                            t-att-src="kanban_image('demomodel_nameomodule','image',record.id.raw_value)"/>
+                          
+                            </div>
+
+                                <div>
+                                    Name:<field name="name"/>
+                                    <br/>
+                                    Value:<field name="value"/>
+                                    <br/>
+                                    Value2:<field name="value2"/>
+                                    </br>
+                                    Doctor:<field name="doctor_id"/>
+                                </div>
+                            </div>
+                      </div>
+                    </div>
+                  
+                </t>
+              </templates>
+            </kanban>
+          </field>
+        </record> -->   
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="demomodule.action_window">
+      <field name="name">demomodule window</field>
+      <field name="res_model">demomodule.demomodule</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+
+  
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="demomodule.action_server">
+      <field name="name">demomodule server</field>
+      <field name="model_id" ref="model_demomodule_demomodule"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form","kanban"
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+
+    <menuitem name="demomodule" id="demomodule.menu_root"
+
+        web_icon = "demomodule,static/description/icon.png"
+
+
+    />
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="demomodule.menu_1" parent="demomodule.menu_root"/>
+    <menuitem name="Menu 2" id="demomodule.menu_2" parent="demomodule.menu_root"/>
+    
+
+
+    <!-- actions  -->
+
+    <menuitem name="List" id="demomodule.menu_1_list" parent="demomodule.menu_1"
+              action="demomodule.action_window"/>
+    <menuitem name="Server to list" id="demomodule" parent="demomodule.menu_2"
+              action="demomodule.action_server"/>
+    
+    <record id="product_template_action" model="ir.actions.act_window">
+        <field name="name">Ravi</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="view_id" ref="product.product_template_kanban_view"/>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="context">{"search_default_filter_to_sell":1, "sale_multi_pricelist_product_template": 1}</field>
+        <field name="context">{"search_default_filter_to_sell":0}</field>
+        <field name="context">{"search_default_filter_to_purchase":0}</field>
+        <!-- <field name="context">{"search_default_filter_to_purchase": 0, "search_default_filter_to_sell": 1}</field> -->
+
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product
+            </p><p>
+                You must define a product for everything you sell or purchase,
+                whether it's a storable product, a consumable or a service.
+            </p>
+    
+        </field> 
+    
+    </record>
+
+        <record id="sale.product_template_action" model="ir.actions.act_window">    
+            <field name="context">{"search_default_filter_to_purchase":0,
+                 "purchase_product_template": 0,
+                 "default_sale_ok":0,
+                 "default_purchase_ok":0,
+                 "string_purchase_ok":"",
+                }</field>
+        </record>
+
+
+        <record id="purchase.product_normal_action_puchased" model="ir.actions.act_window">
+            <field name="context">{"search_default_filter_to_purchase":0,
+                 "purchase_product_template": 0,
+                 "default_sale_ok":0,
+                 "default_purchase_ok":0,
+                 "string_purchase_ok":"",   
+                }</field>
+        </record>
+
+        <record id="mrp.product_template_action" model="ir.actions.act_window">
+            <field name="context">{"search_default_filter_to_purchase":0,
+                 "purchase_product_template": 0,
+                 "default_sale_ok":0,
+                 "default_purchase_ok":0,
+                 "string_purchase_ok":"",
+                }</field>
+        </record>
+
+    
+
+    <menuitem
+        name="Product"
+        action="product_template_action"
+        id="menu_view_base_module_update"
+        parent="demomodule.menu_1"/>
+
+
+    <!-- custom_addons/views/partner_view.xml -->
+    
+<record id="view_partner_form_inherit" model="ir.ui.view">
+    <field name="name">res.partner.form.inherit</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+       
+
+        <xpath expr="//div[hasclass('oe_kanban_details')]" position="after">
+            <field name="is_published" widget="boolean_toggle"/>
+        </xpath>    
+    </field>
+</record>  
+
+
+
+    <record id="view_product_product_variant_form_inherit" model="ir.ui.view">
+        <field name="name">product.product.variants.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">  
+                <group>
+                    <field name="description_sale" string="sale"/>  
+                    <!-- <field name="description" string = "description"/> -->
+                    <field name="description" string = "description"/>            
+
+                </group>             
+                
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_company']" position="after">
+                
+                <!-- <button string="Action" type="object" name="button_do_something" class="oe_highlight" attrs="{'invisible': [('is_company', '=', False)]}"/> -->
+                <button string="Action" type="object" name="button_do_something" class="oe_highlight"/>
+
+                
+
+                
+
+            </xpath>
+        </field>
+    </record>
+
+    
+
+
+
+   
+
+
+
+</odoo>
+
+
+
+
+
+
+   
+
+
+
+
+
+
+    
