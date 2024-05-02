@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record id="cspl_website_banners_form_view" model="ir.ui.view">
+            <field name="name">cspl_website.banners.form</field>
+            <field name="model">cspl_website.cspl_website</field>
+            <field name="arch" type="xml">
+                <form string="Banners">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="image" />
+                            <field name="description" />
+                            <field name="mobile_image" />
+                            <field name="is_active" />
+                            <field name="link" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cspl_website_feature_paltform_form_view" model="ir.ui.view">
+            <field name="name">cspl_website.featur.form</field>
+            <field name="model">cspl_website.feature</field>
+            <field name="arch" type="xml">
+                <form string="Feature_Plateform">
+                    <sheet>
+                        <group>
+                            <field name="text" />
+                            <field name="heading" />
+                            <field name="image" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cspl_website_banners_action">
+            <field name="name">cspl_website window</field>
+            <field name="res_model">cspl_website.cspl_website</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cspl_website_feature_action">
+            <field name="name">cspl_website feature</field>
+            <field name="res_model">cspl_website.feature</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="cspl_website" id="cspl_website.menu_root" />
+
+        <menuitem id="menu_cspl_website_banners"
+            name="Banners"
+            parent="cspl_website.menu_root"
+            action="cspl_website_banners_action"
+            sequence="10" />
+
+        <menuitem id="menu_cspl_website_feature"
+            name="features"
+            parent="cspl_website.menu_root"
+            action="cspl_website_feature_action"
+            sequence="10" />
+    </data>
+</odoo>
