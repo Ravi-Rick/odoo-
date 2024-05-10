@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="default_tag_top_selling" model="product.tag">
+        <field name="name">Top selling</field>
+    </record>
+    <record id="default_tag_frequently_purchased" model="product.tag">
+        <field name="name">Frequently purchased</field>
+    </record>
+</odoo>

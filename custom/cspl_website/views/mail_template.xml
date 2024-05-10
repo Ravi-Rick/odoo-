@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+        <!-- Email template for reminder of unregistered users -->
+        <record id="mail_template_user_login" model="mail.template">
+            <field name="name">Customer: OTP Verification</field>
+            <field name="model_id" ref="base.model_res_partner" />
+            <field name="subject">OTP Verification</field>
+            <field name="email_from">{{ (object.company_id.email or "hello@beljumlah.com") }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="description">
+                Sent automatically to admin if new user haven't responded to the invitation
+            </field>
+            <field name="body_html" type="html">
+                <t t-out="object.otp" />
+            </field>
+            <!-- <field name="lang">{{ object.partner_id.lang }}</field> -->
+            <field name="auto_delete" eval="False" />
+        </record>
+
+    </data>
+</odoo>
