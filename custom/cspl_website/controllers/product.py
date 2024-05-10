@@ -405,7 +405,9 @@ class ProductsAndCategories(http.Controller):
                         "image_description": content.image_description if content.image_description else "",
                         "video_type": "",
                         "video_file": "",
-                        "video_url": ""
+                        "video_url": "",
+                        "text_type": "",  # New field for Image content
+                        "heading": ""     # New field for Image content
                     })
 
                 elif content.content_type == "Video":
@@ -417,7 +419,9 @@ class ProductsAndCategories(http.Controller):
                             "image_description": "",
                             "video_type": content.video_type,
                             "video_file": "",
-                            "video_url": content.video_url
+                            "video_url": content.video_url,
+                            "text_type": "",  # New field for Video content
+                            "heading": ""     # New field for Video content
                         })
 
                     elif content.video_type == "Video":
@@ -428,7 +432,22 @@ class ProductsAndCategories(http.Controller):
                             "image_description": "",
                             "video_type": content.video_type,
                             "video_file": f"/web/image?model=aplus_content&id={content.id}&field=video_file",
-                            "video_url": ""
+                            "video_url": "",
+                            "text_type": "",  # New field for Video content
+                            "heading": ""     # New field for Video content
+                        })
+                        
+                    elif content.content_type == "Text":
+                        aplus_content_list.append({
+                            "sequence_number": content.sequence_number,
+                            "content_type": content.content_type,
+                            "image": "",
+                            "image_description": "",
+                            "video_type": "",
+                            "video_file": "",
+                            "video_url": "",
+                            "text_type": content.text_type if content.text_type else "",  # New field for Text content
+                            "heading": content.heading if content.heading else ""           # New field for Text content
                         })
 
         return {

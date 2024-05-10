@@ -150,8 +150,8 @@ class APlusContent(models.Model):
     )
     video_file = fields.Binary()
     video_url = fields.Char()
-    text_type= fields.Text(string="Text")
     heading = fields.Char(string="Heading")
+    text_type= fields.Html(string="Text")
 
 
 class PricelistItem(models.Model):

@@ -34,6 +34,10 @@
                     <div name="max_age" class="o_row">
                         <field name="max_age" />
                     </div>
+                    <label for="plain_description" />
+                    <div name="plain_description" class="o_row">
+                        <field name="plain_description" />
+                    </div>
                     <label for="in_stock" />
                     <div name="in_stock" class="o_row">
                         <field name="in_stock" />
@@ -57,10 +61,8 @@
                                     <field name="video_type" invisible="content_type != 'Video'" />
                                     <field name="video_file" invisible="video_type != 'Video'" />
                                     <field name="video_url" widget="url" invisible="video_type != 'URL'" />
-                                    <field name="text_type" invisible="content_type != 'Text'" />
-                                    <field name="heading" invisible="content_type != 'Text'" />
-
-
+                                    <field name="text_type"  invisible="content_type != 'Text'" />
+                                    <field name="heading"  invisible="content_type != 'Text'" />
                                 </group>
                             </form>
                         </field>
